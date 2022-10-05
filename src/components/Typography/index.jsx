@@ -7,6 +7,8 @@ export const Texts = ({ children, className, tag }) => {
       {tag === "h2" && <h2 className={className}>{children}</h2>}
       {tag === "h3" && <h3 className={className}>{children}</h3>}
       {tag === "span" && <span className={className}>{children}</span>}
+      {tag === "label" && <label className={className}>{children}</label>}
+      {tag === "p" && <p className={className}>{children}</p>}
     </>
   );
 };
