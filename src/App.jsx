@@ -1,13 +1,13 @@
-import "./App.css";
 import Routes from "./components/Routes";
-import Global from "./styles/global";
+import { AppRoot } from "./styles/App";
+import { Global } from "./styles/global";
 
 function App() {
   return (
-    <>
+    <AppRoot>
       <Global />
       <Routes />
-    </>
+    </AppRoot>
   );
 }
 

@@ -1,6 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 
-export const GlobalStyle = createGlobalStyle`
+export const Global = createGlobalStyle`
 
 :root{
     --primary: #FF577F;
@@ -19,19 +19,26 @@ export const GlobalStyle = createGlobalStyle`
     --toastify-icon-color-error: #E83F5B;
 }
 
-ul,ol,li{
-    list-style: none;
-}
 
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family:'Inter';
 }
+
+ul,ol,li{
+    list-style: none;
+}
+
 
 button{
     cursor: pointer;
     border: none;
     background:transparent;
+}
+
+a{
+    text-decoration:none;
 }
 `;
