@@ -1,0 +1,37 @@
+import { createGlobalStyle } from "styled-components";
+
+export const GlobalStyle = createGlobalStyle`
+
+:root{
+    --primary: #FF577F;
+    --primary-focus: #FF427F;
+    --primary-negative: #121214;
+    
+    --grey-0: #F8F9FA;
+    --grey-1: #868E96;
+    --grey-2: #343B41;
+    --grey-3: #212529;
+    --grey-4: #121214;
+    
+    --toastify-color-success: #3FE864; 
+    --toastify-color-error: #E83F5B;
+    --toastify-icon-color-success: #3FE864;
+    --toastify-icon-color-error: #E83F5B;
+}
+
+ul,ol,li{
+    list-style: none;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+button{
+    cursor: pointer;
+    border: none;
+    background:transparent;
+}
+`;
