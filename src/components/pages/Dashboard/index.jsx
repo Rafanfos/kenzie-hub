@@ -1,9 +1,13 @@
 import { useEffect, useState } from "react";
+import { Navigate } from "react-router-dom";
 import { api } from "../../../services/api";
-import { Page } from "../../../styles/App";
+import logo from "../../../assets/Logo.png";
+import { DashboardPage } from "./style";
+import { StyledTitle } from "../../../styles/components/typography";
 
 const Dashboard = () => {
-  const [loggedUser, setLoggedUser] = useState("");
+  const [loggedUser, setLoggedUser] = useState("noUser");
+  const { name, course_module } = loggedUser;
 
   useEffect(() => {
     const userId = localStorage.getItem("@USERID");
@@ -12,10 +16,37 @@ const Dashboard = () => {
     });
   }, []);
 
+  const logout = () => {
+    localStorage.clear();
+    setLoggedUser("");
+  };
+
   return (
-    <Page>
-      <h1>Bem vindo {loggedUser.name}</h1>;
-    </Page>
+    <DashboardPage>
+      {!loggedUser && <Navigate to="/" />}
+      <div className="header">
+        <img src={logo} alt="logo" />
+        <button className="black-button" onClick={() => logout()}>
+          Sair
+        </button>
+      </div>
+      <div className="presentation">
+        <StyledTitle tag="h3" className="title">
+          Olá, {name}
+        </StyledTitle>
+        <StyledTitle tag="span" className="module">
+          {course_module}
+        </StyledTitle>
+      </div>
+      <div className="message">
+        <StyledTitle tag="h3" className="title">
+          Que pena! Estamos em desenvolvimento :(
+        </StyledTitle>
+        <StyledTitle tag="span" className="title">
+          Nossa aplicação está em desenvolvimento, em breve teremos novidades
+        </StyledTitle>
+      </div>
+    </DashboardPage>
   );
 };
 

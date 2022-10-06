@@ -10,6 +10,7 @@ export const AppRoot = styled.div`
     align-items: center;
     width: 90%;
     max-width: 370px;
+    padding: 10px;
   }
 
   form {
@@ -71,9 +72,20 @@ export const AppRoot = styled.div`
   }
 
   button {
+    background-color: var(--primary-negative);
+    border: 1px solid var(--primary-negative);
+
+    font-size: 16px;
+  }
+
+  button:hover {
+    background-color: var(--primary-focus);
+    border: 1px solid var(--primary-focus);
+  }
+
+  button:focus {
     background-color: var(--primary);
     border: 1px solid var(--primary);
-    font-size: 16px;
   }
 
   a {
@@ -87,10 +99,19 @@ export const AppRoot = styled.div`
     border: 1px solid var(--grey-1);
   }
 
+  .grey-button:hover {
+  }
+
   .black-button {
     background-color: var(--grey-3);
     border: 1px solid var(--grey-3);
     width: 80px;
+  }
+
+  .black-button:hover,
+  .grey-button:hover {
+    background-color: var(--grey-2);
+    border: 1px solid var(--grey-2);
   }
 
   p {
