@@ -27,6 +27,8 @@ export const Global = createGlobalStyle`
     font-family:'Inter';
 }
 
+
+
 ul,ol,li{
     list-style: none;
 }
@@ -40,5 +42,9 @@ button{
 
 a{
     text-decoration:none;
+}
+
+body{
+    height:100vh;
 }
 `;

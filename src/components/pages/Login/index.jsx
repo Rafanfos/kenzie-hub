@@ -3,10 +3,15 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import logo from "../../../assets/Logo.png";
 import { StyledTitle } from "../../../styles/components/typography";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { Page } from "../../../styles/App";
+import { useEffect, useState } from "react";
+import { api } from "../../../services/api";
 
 const Login = () => {
+  const [loginUser, setLoginUser] = useState("");
+  const [loading, setLoading] = useState("");
+
   const formSchema = yup.object().shape({
     email: yup
       .string()
@@ -23,10 +28,27 @@ const Login = () => {
     resolver: yupResolver(formSchema),
   });
 
-  const sendData = (data) => console.log(data);
+  const sendData = (data) => {
+    api
+      .post("/sessions", data)
+      .then((resp) => {
+        setLoginUser(resp.data.user);
+        localStorage.setItem("@TOKEN", resp.data.token);
+        localStorage.setItem("@USERID", resp.data.user.id);
+      })
+      .catch((error) => console.log(error));
+  };
+
+  useEffect(() => {
+    const userId = localStorage.getItem("@USERID");
+    api.get(`/users/${userId}`).then((resp) => {
+      setLoginUser(resp.data);
+    });
+  }, []);
 
   return (
     <Page>
+      {loginUser && <Navigate to={"/dashboard"} />}
       <img src={logo} alt="logo" />
       <form onSubmit={handleSubmit(sendData)}>
         <StyledTitle tag="h1" className="title">
@@ -48,7 +70,9 @@ const Login = () => {
         </div>
         <button type="submit">Entrar</button>
         <StyledTitle tag="span">Ainda não é cadastrado?</StyledTitle>
-        <Link to={"register"}>Cadastre-se</Link>
+        <Link className="grey-button" to={"register"}>
+          Cadastre-se
+        </Link>
       </form>
     </Page>
   );
