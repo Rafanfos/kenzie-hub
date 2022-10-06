@@ -1,17 +1,24 @@
 import styled from "styled-components";
 
 export const AppRoot = styled.div`
+  height: 100vh;
   @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap");
+
+  .title-div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    max-width: 370px;
+  }
 
   form {
     background-color: var(--grey-3);
     box-shadow: 0px 3.20867px 32.0867px -8.02168px rgba(0, 0, 0, 0.25);
     border-radius: 3.20867px;
-    /* height: 60%; */
     width: 90%;
     display: flex;
     flex-direction: column;
-    align-items: center;
     align-items: center;
     gap: 20px;
     padding: 10px;
@@ -22,7 +29,9 @@ export const AppRoot = styled.div`
   .email,
   .password,
   .confirmPassword,
-  .bio {
+  .bio,
+  .contact,
+  .course_module {
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -38,6 +47,7 @@ export const AppRoot = styled.div`
   }
 
   input,
+  select,
   button,
   a {
     height: 38px;
@@ -49,18 +59,11 @@ export const AppRoot = styled.div`
     border-radius: 4px;
   }
 
-  input {
+  input,
+  select {
     background-color: var(--grey-2);
     border-radius: 4px;
     border: none;
-  }
-
-  input:active {
-    border: 1px solid var(--grey-0);
-  }
-
-  input:enabled {
-    background-color: var(--grey-2);
   }
 
   span {
@@ -74,11 +77,20 @@ export const AppRoot = styled.div`
   }
 
   a {
-    background-color: var(--grey-1);
-    border: 1px solid var(--grey-1);
     text-align: center;
     padding: 10px;
     font-size: 12px;
+  }
+
+  .grey-button {
+    background-color: var(--grey-1);
+    border: 1px solid var(--grey-1);
+  }
+
+  .black-button {
+    background-color: var(--grey-3);
+    border: 1px solid var(--grey-3);
+    width: 80px;
   }
 
   p {
@@ -88,11 +100,13 @@ export const AppRoot = styled.div`
 
 export const Page = styled.div`
   background-color: var(--grey-4);
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  min-height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 20px;
+  padding: 20px 0;
+  overflow: auto;
 `;

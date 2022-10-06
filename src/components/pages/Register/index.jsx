@@ -3,10 +3,14 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import logo from "../../../assets/Logo.png";
 import { StyledTitle } from "../../../styles/components/typography";
-// import { Link } from "react-router-dom";
 import { Page } from "../../../styles/App";
+import { api } from "../../../services/api";
+import { Link, Navigate } from "react-router-dom";
+import { useState } from "react";
 
 const Register = () => {
+  const [registerUser, setRegisterUser] = useState("");
+
   const formSchema = yup.object().shape({
     name: yup.string().required("Nome obrigatório*"),
     email: yup
@@ -15,11 +19,17 @@ const Register = () => {
       .email("E-mail inválido*"),
     password: yup
       .string()
-      .min(8, "Mín. 8 caracteres")
-      .required("Senha obrigatória*"),
+      .required("Senha obrigatória*")
+      .min(8, "Mín. 8 caracteres*")
+      .matches(/[A-Z]/, "Falta letra maiúscula*")
+      .matches(/[a-z]/, "Falta letra minúscula*")
+      .matches(/[\W_\S]/, "Falta caractere especial*")
+      .trim(),
+
     confirmPassword: yup
       .string()
-      .oneOf([yup.ref("password")], "As senhas estão diferentes*"),
+      .oneOf([yup.ref("password")], "As senhas estão diferentes*")
+      .trim(),
     bio: yup.string().required("Bio obrigatória*"),
   });
 
@@ -31,11 +41,24 @@ const Register = () => {
     resolver: yupResolver(formSchema),
   });
 
-  const sendData = (data) => console.log(data);
+  const sendData = (data) => {
+    api
+      .post("/users", data)
+      .then((resp) => {
+        setRegisterUser(resp.data);
+      })
+      .catch((error) => console.log(error));
+  };
 
   return (
     <Page>
-      <img src={logo} alt="logo" />
+      {registerUser && <Navigate to={"/"} />}
+      <div className="title-div">
+        <img src={logo} alt="logo" />
+        <Link className="black-button" to="/">
+          Voltar
+        </Link>
+      </div>
       <form onSubmit={handleSubmit(sendData)}>
         <StyledTitle tag="h1" className="title">
           Registro
@@ -83,7 +106,27 @@ const Register = () => {
           <input type="text" id="bio" {...register("bio")} />
           <StyledTitle tag="p">{errors.bio?.message}</StyledTitle>
         </div>
-        <button type="submit">Entrar</button>
+        <div className="contact">
+          <StyledTitle tag="label" htmlFor="contact">
+            Contato
+          </StyledTitle>
+          <input type="text" id="contact" {...register("contact")} />
+          <StyledTitle tag="p">{errors.bio?.message}</StyledTitle>
+        </div>
+        <div className="course_module">
+          <StyledTitle tag="label" htmlFor="course_module">
+            Módulo
+          </StyledTitle>
+          <select type="text" id="course_module" {...register("course_module")}>
+            <option>Primeiro módulo</option>
+            <option>Segundo módulo</option>
+            <option>Terceiro módulo</option>
+            <option>Quarto módulo</option>
+            <option>Quinto módulo</option>
+            <option>Sexto módulo</option>
+          </select>
+        </div>
+        <button type="submit">Cadastrar</button>
       </form>
     </Page>
   );
