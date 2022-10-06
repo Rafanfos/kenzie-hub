@@ -118,12 +118,12 @@ const Register = () => {
             Módulo
           </StyledTitle>
           <select type="text" id="course_module" {...register("course_module")}>
-            <option>Primeiro módulo</option>
-            <option>Segundo módulo</option>
-            <option>Terceiro módulo</option>
-            <option>Quarto módulo</option>
-            <option>Quinto módulo</option>
-            <option>Sexto módulo</option>
+            <option>Primeiro módulo (Introdução ao Frontend)</option>
+            <option>Segundo módulo (Frontend Avançado)</option>
+            <option>Terceiro módulo (Bibliotecas Frontend)</option>
+            <option>Quarto módulo (Introdução ao Backend)</option>
+            <option>Quinto módulo (Backend Avançado)</option>
+            <option>Sexto módulo (Empregabilidade)</option>
           </select>
         </div>
         <button type="submit">Cadastrar</button>
