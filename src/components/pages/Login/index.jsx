@@ -7,6 +7,7 @@ import { Link, Navigate } from "react-router-dom";
 import { Page } from "../../../styles/App";
 import { useEffect, useState } from "react";
 import { api } from "../../../services/api";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const [loginUser, setLoginUser] = useState("");
@@ -34,25 +35,24 @@ const Login = () => {
         setLoginUser(resp.data.user);
         localStorage.setItem("@TOKEN", resp.data.token);
         localStorage.setItem("@USERID", resp.data.user.id);
+        toast.success(`Login concluído!`);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => toast.error("Dados inválidos, tente novamente..."));
   };
 
   useEffect(() => {
     const userId = localStorage.getItem("@USERID");
-    api
-      .get(`/users/${userId}`)
-      .then((resp) => {
-        setTimeout(() => {
-          setLoginUser(resp.data);
-        }, 5000);
-      })
-      .catch((error) => console.log(error));
+    userId &&
+      api.get(`/users/${userId}`).then((resp) => {
+        setLoginUser(resp.data);
+      });
   }, []);
 
   return (
     <>
-      {loginUser && <Navigate to={"dashboard"} />}
+      {loginUser && toast.success(`Bem vindo ${loginUser.name}`) && (
+        <Navigate to={"dashboard"} />
+      )}
       <Page>
         <img src={logo} alt="logo" />
         <form onSubmit={handleSubmit(sendData)}>
@@ -77,7 +77,9 @@ const Login = () => {
             />
             <StyledTitle tag="p">{errors.password?.message}</StyledTitle>
           </div>
-          <button type="submit">Entrar</button>
+          <button className="button" type="submit">
+            Entrar
+          </button>
           <StyledTitle tag="span">Ainda não é cadastrado?</StyledTitle>
           <Link className="grey-button" to={"register"}>
             Cadastre-se

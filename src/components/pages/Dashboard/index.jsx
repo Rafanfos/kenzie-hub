@@ -5,11 +5,13 @@ import logo from "../../../assets/Logo.png";
 import { DashboardPage } from "./style";
 import { StyledTitle } from "../../../styles/components/typography";
 import LoadingPage from "../../LoadingPage";
+import { toast } from "react-toastify";
 
 const Dashboard = () => {
   const [loggedUser, setLoggedUser] = useState("noUser");
   const [loading, setLoading] = useState(true);
   const { name, course_module } = loggedUser;
+  const greetings = ["Vá em paz!", "Vida longa e prospera!", "Até mais ver!"];
 
   useEffect(() => {
     const userId = localStorage.getItem("@USERID");
@@ -26,6 +28,9 @@ const Dashboard = () => {
 
   const logout = () => {
     localStorage.clear();
+    toast.success(`${greetings[Math.ceil(Math.random() * 3)]}`, {
+      icon: "🖖",
+    });
     setLoggedUser("");
   };
 
@@ -38,7 +43,7 @@ const Dashboard = () => {
           <div className="header">
             <img src={logo} alt="logo" />
             {!loggedUser && <Navigate to="/" />}
-            <button className="black-button" onClick={() => logout()}>
+            <button className="black-button button" onClick={() => logout()}>
               Sair
             </button>
           </div>
