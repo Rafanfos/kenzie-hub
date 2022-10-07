@@ -7,6 +7,7 @@ import { Page } from "../../../styles/App";
 import { api } from "../../../services/api";
 import { Link, Navigate } from "react-router-dom";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 const Register = () => {
   const [registerUser, setRegisterUser] = useState("");
@@ -23,7 +24,9 @@ const Register = () => {
       .min(8, "Mín. 8 caracteres*")
       .matches(/[A-Z]/, "Falta letra maiúscula*")
       .matches(/[a-z]/, "Falta letra minúscula*")
-      .matches(/[\W_\S]/, "Falta caractere especial*")
+      .matches(/[A-Z]/, "Falta letra maiúscula*")
+      .matches(/[\d]/, "Falta número*")
+      .matches(/[\W_]/, "Falta caractere especial*")
       .trim(),
 
     confirmPassword: yup
@@ -46,8 +49,9 @@ const Register = () => {
       .post("/users", data)
       .then((resp) => {
         setRegisterUser(resp.data);
+        toast.success(`Cadastro de ${registerUser.name} concluído`);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => toast.error("Dados inválidos!!"));
   };
 
   return (
@@ -126,7 +130,9 @@ const Register = () => {
             <option>Sexto módulo (Empregabilidade)</option>
           </select>
         </div>
-        <button type="submit">Cadastrar</button>
+        <button className="button" type="submit">
+          Cadastrar
+        </button>
       </form>
     </Page>
   );

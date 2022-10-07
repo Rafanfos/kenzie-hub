@@ -42,7 +42,7 @@ export const AppRoot = styled.div`
 
   h1,
   label,
-  button,
+  .button,
   a,
   span {
     color: var(--grey-0);
@@ -50,12 +50,12 @@ export const AppRoot = styled.div`
 
   input,
   select,
-  button,
+  .button,
   a {
     height: 38px;
   }
 
-  button,
+  .button,
   a {
     width: 90%;
     border-radius: 4px;
@@ -72,19 +72,18 @@ export const AppRoot = styled.div`
     color: var(--grey-1);
   }
 
-  button {
+  .button {
     background-color: var(--primary-negative);
     border: 1px solid var(--primary-negative);
-
     font-size: 16px;
   }
 
-  button:hover {
+  .button:hover {
     background-color: var(--primary-focus);
     border: 1px solid var(--primary-focus);
   }
 
-  button:focus {
+  .button:focus {
     background-color: var(--primary);
     border: 1px solid var(--primary);
   }
@@ -98,9 +97,6 @@ export const AppRoot = styled.div`
   .grey-button {
     background-color: var(--grey-1);
     border: 1px solid var(--grey-1);
-  }
-
-  .grey-button:hover {
   }
 
   .black-button {
