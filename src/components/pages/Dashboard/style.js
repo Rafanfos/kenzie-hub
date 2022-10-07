@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { downAppear } from "../../../styles/components/keyframes";
 
 export const DashboardPage = styled.div`
   background-color: var(--grey-4);
@@ -7,6 +8,7 @@ export const DashboardPage = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  animation: ${downAppear} 1s;
 
   .header {
     width: 100%;

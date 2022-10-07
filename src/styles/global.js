@@ -25,6 +25,7 @@ export const Global = createGlobalStyle`
     padding: 0;
     box-sizing: border-box;
     font-family:'Inter';
+    
 }
 
 
@@ -46,5 +47,6 @@ a{
 
 body{
     height:100vh;
+    background-color: var(--grey-4);
 }
 `;

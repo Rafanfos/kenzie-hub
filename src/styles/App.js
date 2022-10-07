@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { loading, rotate, topAppear } from "./components/keyframes";
 
 export const AppRoot = styled.div`
   height: 100vh;
@@ -117,6 +118,15 @@ export const AppRoot = styled.div`
   p {
     color: darkred;
   }
+
+  #loader {
+    color: var(--grey-1);
+    animation: ${rotate} 2s linear infinite;
+  }
+
+  .loading {
+    animation: ${loading} 2s linear infinite;
+  }
 `;
 
 export const Page = styled.div`
@@ -130,4 +140,5 @@ export const Page = styled.div`
   gap: 20px;
   padding: 20px 0;
   overflow: auto;
+  animation: ${topAppear} 3s;
 `;
