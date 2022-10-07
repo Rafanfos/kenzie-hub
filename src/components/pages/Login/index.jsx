@@ -10,7 +10,6 @@ import { api } from "../../../services/api";
 
 const Login = () => {
   const [loginUser, setLoginUser] = useState("");
-  const [loading, setLoading] = useState("");
 
   const formSchema = yup.object().shape({
     email: yup
@@ -41,40 +40,51 @@ const Login = () => {
 
   useEffect(() => {
     const userId = localStorage.getItem("@USERID");
-    api.get(`/users/${userId}`).then((resp) => {
-      setLoginUser(resp.data);
-    });
+    api
+      .get(`/users/${userId}`)
+      .then((resp) => {
+        setTimeout(() => {
+          setLoginUser(resp.data);
+        }, 5000);
+      })
+      .catch((error) => console.log(error));
   }, []);
 
   return (
-    <Page>
-      {loginUser && <Navigate to={"/dashboard"} />}
-      <img src={logo} alt="logo" />
-      <form onSubmit={handleSubmit(sendData)}>
-        <StyledTitle tag="h1" className="title">
-          Login
-        </StyledTitle>
-        <div className="email">
-          <StyledTitle tag="label" htmlFor="email">
-            Email
+    <>
+      {loginUser && <Navigate to={"dashboard"} />}
+      <Page>
+        <img src={logo} alt="logo" />
+        <form onSubmit={handleSubmit(sendData)}>
+          <StyledTitle tag="h1" className="title">
+            Login
           </StyledTitle>
-          <input type="text" id="email" {...register("email")} />
-          <StyledTitle tag="p">{errors.email?.message}</StyledTitle>
-        </div>
-        <div className="password">
-          <StyledTitle tag="label" htmlFor="password">
-            Senha
-          </StyledTitle>
-          <input type="password" id="passwordLogin" {...register("password")} />
-          <StyledTitle tag="p">{errors.password?.message}</StyledTitle>
-        </div>
-        <button type="submit">Entrar</button>
-        <StyledTitle tag="span">Ainda não é cadastrado?</StyledTitle>
-        <Link className="grey-button" to={"register"}>
-          Cadastre-se
-        </Link>
-      </form>
-    </Page>
+          <div className="email">
+            <StyledTitle tag="label" htmlFor="email">
+              Email
+            </StyledTitle>
+            <input type="text" id="email" {...register("email")} />
+            <StyledTitle tag="p">{errors.email?.message}</StyledTitle>
+          </div>
+          <div className="password">
+            <StyledTitle tag="label" htmlFor="password">
+              Senha
+            </StyledTitle>
+            <input
+              type="password"
+              id="passwordLogin"
+              {...register("password")}
+            />
+            <StyledTitle tag="p">{errors.password?.message}</StyledTitle>
+          </div>
+          <button type="submit">Entrar</button>
+          <StyledTitle tag="span">Ainda não é cadastrado?</StyledTitle>
+          <Link className="grey-button" to={"register"}>
+            Cadastre-se
+          </Link>
+        </form>
+      </Page>
+    </>
   );
 };
 
