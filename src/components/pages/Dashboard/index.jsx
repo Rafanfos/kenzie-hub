@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { api } from "../../../services/api";
 import logo from "../../../assets/Logo.png";
-import { DashboardPage } from "./style";
+import { DashboardPage } from "./styles";
 import { StyledTitle } from "../../../styles/components/typography";
 import LoadingPage from "../../LoadingPage";
 import { toast } from "react-toastify";
@@ -11,27 +11,37 @@ const Dashboard = () => {
   const [loggedUser, setLoggedUser] = useState("noUser");
   const [loading, setLoading] = useState(true);
   const { name, course_module } = loggedUser;
-  const greetings = ["Vá em paz!", "Vida longa e prospera!", "Até mais ver!"];
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const userId = localStorage.getItem("@USERID");
-    api
-      .get(`/users/${userId}`)
-      .then((resp) => {
-        setTimeout(() => {
-          setLoggedUser(resp.data);
-          setLoading(false);
-        }, 5000);
-      })
-      .catch((error) => console.log(error));
+    if (userId) {
+      api
+        .get(`/users/${userId}`)
+        .then((resp) => {
+          setTimeout(() => {
+            setLoggedUser(resp.data);
+            setLoading(false);
+          }, 5000);
+        })
+        .catch((error) => {
+          toast.warning("Favor fazer login!");
+          navigate("/");
+        });
+    } else {
+      toast.warning("Favor fazer login!");
+      navigate("/");
+    }
   }, []);
 
   const logout = () => {
     localStorage.clear();
-    toast.success(`${greetings[Math.ceil(Math.random() * 3)]}`, {
+    toast.success(`"Vida longa e prospera!"`, {
       icon: "🖖",
     });
     setLoggedUser("");
+    navigate("/");
   };
 
   return (
@@ -42,7 +52,6 @@ const Dashboard = () => {
         <DashboardPage>
           <div className="header">
             <img src={logo} alt="logo" />
-            {!loggedUser && <Navigate to="/" />}
             <button className="black-button button" onClick={() => logout()}>
               Sair
             </button>
