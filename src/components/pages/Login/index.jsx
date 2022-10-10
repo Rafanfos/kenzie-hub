@@ -3,14 +3,15 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import logo from "../../../assets/Logo.png";
 import { StyledTitle } from "../../../styles/components/typography";
-import { Link, Navigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Page } from "../../../styles/App";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { api } from "../../../services/api";
 import { toast } from "react-toastify";
 
 const Login = () => {
-  const [loginUser, setLoginUser] = useState("");
+  // const [loginUser, setLoginUser] = useState("");
+  const navigate = useNavigate();
 
   const formSchema = yup.object().shape({
     email: yup
@@ -32,10 +33,11 @@ const Login = () => {
     api
       .post("/sessions", data)
       .then((resp) => {
-        setLoginUser(resp.data.user);
+        // setLoginUser(resp.data.user);
         localStorage.setItem("@TOKEN", resp.data.token);
         localStorage.setItem("@USERID", resp.data.user.id);
         toast.success(`Login concluído!`);
+        redirectDashboard();
       })
       .catch((error) => toast.error("Dados inválidos, tente novamente..."));
   };
@@ -44,15 +46,17 @@ const Login = () => {
     const userId = localStorage.getItem("@USERID");
     userId &&
       api.get(`/users/${userId}`).then((resp) => {
-        setLoginUser(resp.data);
+        // setLoginUser(resp.data);
+        redirectDashboard();
       });
   }, []);
 
+  const redirectDashboard = () => {
+    navigate("/dashboard");
+  };
+
   return (
     <>
-      {loginUser && toast.success(`Bem vindo ${loginUser.name}`) && (
-        <Navigate to={"dashboard"} />
-      )}
       <Page>
         <img src={logo} alt="logo" />
         <form onSubmit={handleSubmit(sendData)}>
