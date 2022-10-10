@@ -5,12 +5,11 @@ import logo from "../../../assets/Logo.png";
 import { StyledTitle } from "../../../styles/components/typography";
 import { Page } from "../../../styles/App";
 import { api } from "../../../services/api";
-import { Link, Navigate } from "react-router-dom";
-import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const Register = () => {
-  const [registerUser, setRegisterUser] = useState("");
+  const navigate = useNavigate("");
 
   const formSchema = yup.object().shape({
     name: yup.string().required("Nome obrigatório*"),
@@ -48,15 +47,14 @@ const Register = () => {
     api
       .post("/users", data)
       .then((resp) => {
-        setRegisterUser(resp.data);
-        toast.success(`Cadastro de ${registerUser.name} concluído`);
+        toast.success(`Cadastro concluído`);
+        navigate("/");
       })
       .catch((error) => toast.error("Dados inválidos!!"));
   };
 
   return (
     <Page>
-      {registerUser && <Navigate to={"/"} />}
       <div className="title-div">
         <img src={logo} alt="logo" />
         <Link className="black-button" to="/">
