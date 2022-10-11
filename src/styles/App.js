@@ -2,15 +2,16 @@ import styled from "styled-components";
 import { loading, rotate, topAppear } from "./components/keyframes";
 
 export const AppRoot = styled.div`
-  height: 100vh;
   @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap");
+
+  height: 100vh;
+  max-width: 1440px;
 
   .title-div {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 90%;
-    max-width: 370px;
     padding: 10px;
   }
 
@@ -23,7 +24,7 @@ export const AppRoot = styled.div`
     flex-direction: column;
     align-items: center;
     gap: 20px;
-    padding: 10px;
+    padding: 20px;
     max-width: 370px;
   }
 
@@ -122,6 +123,12 @@ export const AppRoot = styled.div`
 
   .loading {
     animation: ${loading} 2s linear infinite;
+  }
+
+  @media (min-width: 768px) {
+    .title-div {
+      width: 40%;
+    }
   }
 `;
 
