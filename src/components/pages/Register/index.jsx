@@ -2,7 +2,7 @@ import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import logo from "../../../assets/Logo.png";
-import { StyledTitle } from "../../../styles/components/typography";
+import { StyledTitle } from "../../../styles/components/typographyStyles";
 import { Page } from "../../../styles/App";
 import { api } from "../../../services/api";
 import { Link, useNavigate } from "react-router-dom";

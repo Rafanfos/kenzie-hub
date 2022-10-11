@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { api } from "../../../services/api";
 import logo from "../../../assets/Logo.png";
 import { DashboardPage } from "./styles";
-import { StyledTitle } from "../../../styles/components/typography";
+import { StyledTitle } from "../../../styles/components/typographyStyles";
 import LoadingPage from "../../LoadingPage";
 import { toast } from "react-toastify";
 
