@@ -20,10 +20,8 @@ const Dashboard = () => {
       api
         .get(`/users/${userId}`)
         .then((resp) => {
-          setTimeout(() => {
-            setLoggedUser(resp.data);
-            setLoading(false);
-          }, 5000);
+          setLoggedUser(resp.data);
+          setLoading(false);
         })
         .catch((error) => {
           toast.warning("Favor fazer login!");
