@@ -2,7 +2,7 @@ import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import logo from "../../../assets/Logo.png";
-import { StyledTitle } from "../../../styles/components/typography";
+import { StyledTitle } from "../../../styles/components/typographyStyles";
 import { Link, useNavigate } from "react-router-dom";
 import { Page } from "../../../styles/App";
 import { useEffect } from "react";
@@ -10,7 +10,6 @@ import { api } from "../../../services/api";
 import { toast } from "react-toastify";
 
 const Login = () => {
-  // const [loginUser, setLoginUser] = useState("");
   const navigate = useNavigate();
 
   const formSchema = yup.object().shape({
@@ -33,7 +32,6 @@ const Login = () => {
     api
       .post("/sessions", data)
       .then((resp) => {
-        // setLoginUser(resp.data.user);
         localStorage.setItem("@TOKEN", resp.data.token);
         localStorage.setItem("@USERID", resp.data.user.id);
         toast.success(`Login concluído!`);
@@ -46,7 +44,6 @@ const Login = () => {
     const userId = localStorage.getItem("@USERID");
     userId &&
       api.get(`/users/${userId}`).then((resp) => {
-        // setLoginUser(resp.data);
         redirectDashboard();
       });
   }, []);
