@@ -1,18 +1,17 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useContext, useEffect } from "react";
 import { api } from "../../../services/api";
 import logo from "../../../assets/Logo.png";
-import { DashboardPage } from "./styles";
-import { StyledTitle } from "../../../styles/components/typographyStyles";
+import { StyledTitle } from "../../../styles/components/typography";
 import LoadingPage from "../../LoadingPage";
 import { toast } from "react-toastify";
+import { UserContext } from "../../../context/UserContext";
+import { DashboardPage } from "../../../styles/App";
 
 const Dashboard = () => {
-  const [loggedUser, setLoggedUser] = useState("noUser");
-  const [loading, setLoading] = useState(true);
-  const { name, course_module } = loggedUser;
+  const { user, setUser, loading, setLoading, navigate, logout } =
+    useContext(UserContext);
 
-  const navigate = useNavigate();
+  const { name, course_module } = user;
 
   useEffect(() => {
     const userId = localStorage.getItem("@USERID");
@@ -20,7 +19,7 @@ const Dashboard = () => {
       api
         .get(`/users/${userId}`)
         .then((resp) => {
-          setLoggedUser(resp.data);
+          setUser(resp.data);
           setLoading(false);
         })
         .catch((error) => {
@@ -31,16 +30,17 @@ const Dashboard = () => {
       toast.warning("Favor fazer login!");
       navigate("/");
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const logout = () => {
-    localStorage.clear();
-    toast.success(`"Vida longa e prospera!"`, {
-      icon: "🖖",
-    });
-    setLoggedUser("");
-    navigate("/");
-  };
+  // const logout = () => {
+  //   localStorage.clear();
+  //   toast.success(`"Vida longa e prospera!"`, {
+  //     icon: "🖖",
+  //   });
+  //   setUser("");
+  //   navigate("/");
+  // };
 
   return (
     <>
