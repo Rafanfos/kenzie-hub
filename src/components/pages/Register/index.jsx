@@ -2,14 +2,14 @@ import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import logo from "../../../assets/Logo.png";
-import { StyledTitle } from "../../../styles/components/typographyStyles";
+import { StyledTitle } from "../../../styles/components/typography";
 import { Page } from "../../../styles/App";
-import { api } from "../../../services/api";
-import { Link, useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { UserContext } from "../../../context/UserContext";
 
 const Register = () => {
-  const navigate = useNavigate("");
+  const { sendRegisterData } = useContext(UserContext);
 
   const formSchema = yup.object().shape({
     name: yup.string().required("Nome obrigatório*"),
@@ -43,15 +43,15 @@ const Register = () => {
     resolver: yupResolver(formSchema),
   });
 
-  const sendData = (data) => {
-    api
-      .post("/users", data)
-      .then((resp) => {
-        toast.success(`Cadastro concluído`);
-        navigate("/");
-      })
-      .catch((error) => toast.error("Dados inválidos!!"));
-  };
+  // const sendRegisterData = (data) => {
+  //   api
+  //     .post("/users", data)
+  //     .then((resp) => {
+  //       toast.success(`Cadastro concluído`);
+  //       navigate("/");
+  //     })
+  //     .catch((error) => toast.error("Dados inválidos!!"));
+  // };
 
   return (
     <Page>
@@ -61,7 +61,7 @@ const Register = () => {
           Voltar
         </Link>
       </div>
-      <form onSubmit={handleSubmit(sendData)}>
+      <form onSubmit={handleSubmit(sendRegisterData)}>
         <StyledTitle tag="h1" className="title">
           Registro
         </StyledTitle>
