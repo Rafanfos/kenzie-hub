@@ -1,8 +1,8 @@
-import Routes from "./components/Routes";
 import { Global } from "./styles/global";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { AppRoot } from "./styles/App";
+import RoutesMain from "./Routes";
 
 function App() {
   return (
@@ -21,7 +21,7 @@ function App() {
         theme="dark"
         limit={1}
       />
-      <Routes />
+      <RoutesMain />
     </AppRoot>
   );
 }

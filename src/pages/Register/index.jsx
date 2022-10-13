@@ -1,12 +1,12 @@
+import { useContext } from "react";
+import { UserContext } from "../../context/UserContext";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import logo from "../../../assets/Logo.png";
-import { StyledTitle } from "../../../styles/components/typography";
-import { Page } from "../../../styles/App";
+import { Page } from "../../styles/App";
+import logo from "../../assets/logo.png";
+import { StyledTitle } from "../../styles/components/typography";
 import { Link } from "react-router-dom";
-import { useContext } from "react";
-import { UserContext } from "../../../context/UserContext";
 
 const Register = () => {
   const { sendRegisterData } = useContext(UserContext);
