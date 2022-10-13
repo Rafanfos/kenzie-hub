@@ -42,6 +42,15 @@ const UserProvider = ({ children }) => {
     navigate("/");
   };
 
+  const logout = () => {
+    localStorage.clear();
+    toast.success(`"Vida longa e prospera!"`, {
+      icon: "🖖",
+    });
+    setUser("");
+    navigate("/");
+  };
+
   return (
     <UserContext.Provider
       value={{
@@ -53,6 +62,7 @@ const UserProvider = ({ children }) => {
         sendRegisterData,
         redirectDashboard,
         redirectHome,
+        logout,
       }}
     >
       {children}
