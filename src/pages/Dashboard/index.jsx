@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { UserContext } from "../../context/UserContext";
 import LoadingPage from "../../components/LoadingPage";
 import { DashboardPage } from "./styles";
-import logo from "../../assets/logo.png";
+import logo from "../../assets/Logo.png";
 import { StyledTitle } from "../../styles/components/typography";
 
 const Dashboard = () => {
