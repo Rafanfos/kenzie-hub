@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { Texts } from "../../components/Typography";
+import { Texts } from "../../components/Texts";
 
 export const StyledTitle = styled(Texts)`
   ${({ className }) => {
