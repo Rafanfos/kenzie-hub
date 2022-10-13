@@ -6,7 +6,7 @@ export const AppRoot = styled.div`
 
   height: 100vh;
   max-width: 1440px;
-
+  margin: 0 auto;
   .title-div {
     display: flex;
     justify-content: space-between;

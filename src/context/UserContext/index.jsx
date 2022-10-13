@@ -12,28 +12,36 @@ const UserProvider = ({ children }) => {
 
   const navigate = useNavigate("");
 
-  const sendLoginData = (data) => {
-    api
-      .post("/sessions", data)
-      .then((resp) => {
-        localStorage.setItem("@TOKEN", resp.data.token);
-        localStorage.setItem("@USERID", resp.data.user.id);
-        toast.success(`Login concluído!`);
-        api.defaults.headers.authorization = `Bearer ${resp.data.token}`;
-        setUser(resp.data.user);
-        redirectDashboard();
-      })
-      .catch((error) => toast.error("Dados inválidos, tente novamente..."));
+  const sendLoginData = async (data) => {
+    try {
+      api.defaults.headers.authorization = `Bearer ${data.token}`;
+
+      const resp = await api.post("/sessions", data);
+
+      localStorage.setItem("@TOKEN", resp.data.token);
+      localStorage.setItem("@USERID", resp.data.user.id);
+
+      setUser(resp.data.user);
+
+      redirectDashboard();
+
+      toast.success(`Login concluído!`);
+    } catch (error) {
+      toast.error("Dados inválidos, tente novamente...");
+      console.log(error);
+    }
   };
 
   const sendRegisterData = (data) => {
-    api
-      .post("/users", data)
-      .then((resp) => {
-        toast.success(`Cadastro concluído`);
-        redirectHome();
-      })
-      .catch((error) => toast.error("Dados inválidos!!"));
+    try {
+      api.post("/users", data);
+
+      redirectDashboard();
+
+      toast.success(`Cadastro concluído`);
+    } catch (error) {
+      toast.error("Dados inválidos!!");
+    }
   };
 
   const redirectDashboard = () => {
@@ -55,13 +63,16 @@ const UserProvider = ({ children }) => {
 
   useEffect(() => {
     const token = localStorage.getItem("@TOKEN");
-    async function getUser() {
+    const getUser = async () => {
       if (token) {
         try {
           api.defaults.headers.authorization = `Bearer ${token}`;
 
           const { data } = await api.get(`/profile`);
+
           setUser(data);
+
+          redirectDashboard();
         } catch (error) {
           localStorage.clear();
           redirectHome();
@@ -71,7 +82,7 @@ const UserProvider = ({ children }) => {
       }
 
       setLoading(false);
-    }
+    };
     getUser();
   }, []);
 

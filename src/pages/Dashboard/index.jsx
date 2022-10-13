@@ -7,8 +7,6 @@ import { StyledTitle } from "../../styles/components/typography";
 
 const Dashboard = () => {
   const { user, loading, logout } = useContext(UserContext);
- 
-  const { name, course_module } = user;
 
   return (
     <>
@@ -24,10 +22,10 @@ const Dashboard = () => {
           </div>
           <div className="presentation">
             <StyledTitle tag="h3" className="title">
-              Olá, {name}
+              Olá, {user?.name}
             </StyledTitle>
             <StyledTitle tag="span" className="module">
-              {course_module}
+              {user?.course_module}
             </StyledTitle>
           </div>
           <div className="message">
