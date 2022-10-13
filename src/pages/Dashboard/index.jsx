@@ -1,46 +1,14 @@
-import { useContext, useEffect } from "react";
-import { api } from "../../../services/api";
-import logo from "../../../assets/Logo.png";
-import { StyledTitle } from "../../../styles/components/typography";
-import LoadingPage from "../../LoadingPage";
-import { toast } from "react-toastify";
-import { UserContext } from "../../../context/UserContext";
+import { useContext } from "react";
+import { UserContext } from "../../context/UserContext";
+import LoadingPage from "../../components/LoadingPage";
 import { DashboardPage } from "./styles";
+import logo from "../../assets/logo.png";
+import { StyledTitle } from "../../styles/components/typography";
 
 const Dashboard = () => {
-  const { user, setUser, loading, setLoading, navigate, logout } =
-    useContext(UserContext);
-
+  const { user, loading, logout } = useContext(UserContext);
+ 
   const { name, course_module } = user;
-
-  useEffect(() => {
-    const userId = localStorage.getItem("@USERID");
-    if (userId) {
-      api
-        .get(`/users/${userId}`)
-        .then((resp) => {
-          setUser(resp.data);
-          setLoading(false);
-        })
-        .catch((error) => {
-          toast.warning("Favor fazer login!");
-          navigate("/");
-        });
-    } else {
-      toast.warning("Favor fazer login!");
-      navigate("/");
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  // const logout = () => {
-  //   localStorage.clear();
-  //   toast.success(`"Vida longa e prospera!"`, {
-  //     icon: "🖖",
-  //   });
-  //   setUser("");
-  //   navigate("/");
-  // };
 
   return (
     <>

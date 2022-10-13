@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { downAppear } from "../../../styles/components/keyframes";
+import { downAppear } from "../../styles/components/keyframes";
 
 export const DashboardPage = styled.div`
   background-color: var(--grey-4);
