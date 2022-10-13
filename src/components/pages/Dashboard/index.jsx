@@ -5,7 +5,7 @@ import { StyledTitle } from "../../../styles/components/typography";
 import LoadingPage from "../../LoadingPage";
 import { toast } from "react-toastify";
 import { UserContext } from "../../../context/UserContext";
-import { DashboardPage } from "../../../styles/App";
+import { DashboardPage } from "./styles";
 
 const Dashboard = () => {
   const { user, setUser, loading, setLoading, navigate, logout } =
