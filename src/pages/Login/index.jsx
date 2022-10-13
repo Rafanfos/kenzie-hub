@@ -4,7 +4,7 @@ import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Page } from "../../styles/App";
-import logo from "../../assets/logo.png";
+import logo from "../../assets/Logo.png";
 import { StyledTitle } from "../../styles/components/typography";
 import { Link } from "react-router-dom";
 
