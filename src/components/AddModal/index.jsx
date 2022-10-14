@@ -1,21 +1,16 @@
 import { StyledTitle } from "../../styles/components/typography";
 import { ModalWrapper } from "./styles";
-import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { formSchemaModals } from "../../validators";
 
 const AddModal = ({ setAddModal, addTech }) => {
-  const formSchema = yup.object().shape({
-    title: yup.string().required("Insira uma tecnologia*"),
-    status: yup.string().required("Selecione um nível de proeficiência*"),
-  });
-
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(formSchema),
+    resolver: yupResolver(formSchemaModals),
   });
 
   const add = (event) => {
