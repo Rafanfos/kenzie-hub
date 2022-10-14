@@ -1,30 +1,22 @@
 import { useContext } from "react";
 import { UserContext } from "../../context/UserContext";
-import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Page } from "../../styles/App";
 import logo from "../../assets/Logo.png";
 import { StyledTitle } from "../../styles/components/typography";
 import { Link } from "react-router-dom";
+import { formSchemaLogin } from "../../validators";
 
 const Login = () => {
   const { sendLoginData } = useContext(UserContext);
-
-  const formSchema = yup.object().shape({
-    email: yup
-      .string()
-      .required("E-mail obrigatório*")
-      .email("E-mail inválido"),
-    password: yup.string().required("Senha obrigatória*"),
-  });
 
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(formSchema),
+    resolver: yupResolver(formSchemaLogin),
   });
 
   return (
