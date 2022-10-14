@@ -11,7 +11,6 @@ export const DashboardPage = styled.div`
   align-items: center;
   animation: ${downAppear} 1s;
 
-
   .header {
     width: 100%;
     display: flex;
@@ -47,6 +46,59 @@ export const DashboardPage = styled.div`
   .message > h3,
   .message > span {
     color: transparent;
+  }
+
+  .techs {
+    width: 90%;
+  }
+
+  .techs-title {
+    display: flex;
+    width: 100%;
+    padding: 20px;
+    justify-content: space-between;
+  }
+
+  #add {
+    width: 30px;
+    height: 30px;
+  }
+
+  .techs-title > h2 {
+    color: #ffffff;
+  }
+
+  ul {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background-color: var(--grey-3);
+    max-height: 400px;
+    overflow-x: auto;
+  }
+
+  li {
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--grey-4);
+    padding: 10px;
+    border-radius: 4px;
+  }
+
+  li:hover {
+    background-color: var(--grey-3);
+    cursor: pointer;
+    border: 1px solid var(--grey-4);
+  }
+
+  .tech-name {
+    font-size: 14px;
+    color: #ffffff;
+  }
+
+  .tech-list {
+    padding: 10px;
   }
 
   @media (min-width: 768px) {
