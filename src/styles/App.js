@@ -84,10 +84,10 @@ export const AppRoot = styled.div`
     border: 1px solid var(--primary-focus);
   }
 
-  .button:focus {
+  /* .button:focus {
     background-color: var(--primary);
     border: 1px solid var(--primary);
-  }
+  } */
 
   a {
     text-align: center;
