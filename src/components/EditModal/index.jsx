@@ -1,5 +1,5 @@
 import { StyledTitle } from "../../styles/components/typography";
-import { ModalWrapper } from "./styles";
+import { ModalWrapper } from "./style";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { formSchemaModals } from "../../validators";
