@@ -1,57 +1,23 @@
-import * as yup from "yup";
+import { useContext } from "react";
+import { UserContext } from "../../context/UserContext";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import logo from "../../../assets/Logo.png";
-import { StyledTitle } from "../../../styles/components/typography";
-import { Page } from "../../../styles/App";
+import { Page } from "../../styles/App";
+import logo from "../../assets/Logo.png";
+import { StyledTitle } from "../../styles/components/typography";
 import { Link } from "react-router-dom";
-import { useContext } from "react";
-import { UserContext } from "../../../context/UserContext";
+import { formSchemaRegister } from "../../validators";
 
 const Register = () => {
   const { sendRegisterData } = useContext(UserContext);
-
-  const formSchema = yup.object().shape({
-    name: yup.string().required("Nome obrigatório*"),
-    email: yup
-      .string()
-      .required("E-mail obrigatório*")
-      .email("E-mail inválido*"),
-    password: yup
-      .string()
-      .required("Senha obrigatória*")
-      .min(8, "Mín. 8 caracteres*")
-      .matches(/[A-Z]/, "Falta letra maiúscula*")
-      .matches(/[a-z]/, "Falta letra minúscula*")
-      .matches(/[A-Z]/, "Falta letra maiúscula*")
-      .matches(/[\d]/, "Falta número*")
-      .matches(/[\W_]/, "Falta caractere especial*")
-      .trim(),
-
-    confirmPassword: yup
-      .string()
-      .oneOf([yup.ref("password")], "As senhas estão diferentes*")
-      .trim(),
-    bio: yup.string().required("Bio obrigatória*"),
-  });
 
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(formSchema),
+    resolver: yupResolver(formSchemaRegister),
   });
-
-  // const sendRegisterData = (data) => {
-  //   api
-  //     .post("/users", data)
-  //     .then((resp) => {
-  //       toast.success(`Cadastro concluído`);
-  //       navigate("/");
-  //     })
-  //     .catch((error) => toast.error("Dados inválidos!!"));
-  // };
 
   return (
     <Page>

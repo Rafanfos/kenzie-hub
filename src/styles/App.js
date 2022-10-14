@@ -6,7 +6,7 @@ export const AppRoot = styled.div`
 
   height: 100vh;
   max-width: 1440px;
-
+  margin: 0 auto;
   .title-div {
     display: flex;
     justify-content: space-between;
@@ -84,10 +84,10 @@ export const AppRoot = styled.div`
     border: 1px solid var(--primary-focus);
   }
 
-  .button:focus {
+  /* .button:focus {
     background-color: var(--primary);
     border: 1px solid var(--primary);
-  }
+  } */
 
   a {
     text-align: center;
