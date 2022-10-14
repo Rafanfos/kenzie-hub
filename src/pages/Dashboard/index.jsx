@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { UserContext } from "../../context/UserContext";
 import LoadingPage from "../../components/LoadingPage";
-import { DashboardPage } from "./styles";
+import { DashboardPage } from "./style";
 import logo from "../../assets/Logo.png";
 import { StyledTitle } from "../../styles/components/typography";
 import AddModal from "../../components/AddModal";
