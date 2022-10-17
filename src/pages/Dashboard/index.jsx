@@ -1,4 +1,5 @@
-import { useContext, useState } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../context/UserContext";
 import LoadingPage from "../../components/LoadingPage";
 import { DashboardPage } from "./style";
@@ -7,13 +8,28 @@ import { StyledTitle } from "../../styles/components/typography";
 import AddModal from "../../components/AddModal";
 import { TechContext } from "../../context/TechContext";
 import EditModal from "../../components/EditModal";
+import { api } from "../../services/api";
 
 const Dashboard = () => {
   const { user, loading, logout } = useContext(UserContext);
-  const { techs, addTech, editTech, deleteTech, techId, setTechId } =
+  const { techs, setTechs, addTech, editTech, deleteTech, techId, setTechId } =
     useContext(TechContext);
   const [addModal, setAddModal] = useState(false);
   const [editModal, setEditModal] = useState(false);
+
+  useEffect(() => {
+    const getTechs = async () => {
+      const token = localStorage.getItem("@TOKEN");
+      try {
+        api.defaults.headers.authorization = `Bearer ${token}`;
+
+        const { data } = await api.get(`/profile`);
+
+        setTechs(data.techs);
+      } catch (error) {}
+    };
+    getTechs();
+  }, []);
 
   return (
     <>

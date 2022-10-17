@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
 import { toast } from "react-toastify";
 import { api } from "../../services/api";
 
@@ -57,23 +57,31 @@ const TechProvider = ({ children }) => {
     }
   };
 
-  useEffect(() => {
-    const getTechs = async () => {
-      const token = localStorage.getItem("@TOKEN");
-      try {
-        api.defaults.headers.authorization = `Bearer ${token}`;
+  // useEffect(() => {
+  //   const getTechs = async () => {
+  //     const token = localStorage.getItem("@TOKEN");
+  //     try {
+  //       api.defaults.headers.authorization = `Bearer ${token}`;
 
-        const { data } = await api.get(`/profile`);
+  //       const { data } = await api.get(`/profile`);
 
-        setTechs(data.techs);
-      } catch (error) {}
-    };
-    getTechs();
-  }, []);
+  //       setTechs(data.techs);
+  //     } catch (error) {}
+  //   };
+  //   getTechs();
+  // }, []);
 
   return (
     <TechContext.Provider
-      value={{ addTech, editTech, deleteTech, techs, techId, setTechId }}
+      value={{
+        addTech,
+        editTech,
+        deleteTech,
+        techs,
+        techId,
+        setTechId,
+        setTechs,
+      }}
     >
       {children}
     </TechContext.Provider>
