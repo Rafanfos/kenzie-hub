@@ -84,6 +84,7 @@ export const DashboardPage = styled.div`
     background-color: var(--color-grey-4);
     padding: 10px;
     border-radius: 4px;
+    border: 1px solid transparent;
   }
 
   li:hover {
