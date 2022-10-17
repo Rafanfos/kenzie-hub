@@ -25,7 +25,7 @@ export const ModalWrapper = styled.div`
   }
 
   .header {
-    background-color: var(--grey-2);
+    background-color: var(--color-grey-2);
     border-top-right-radius: 8px;
     border-top-left-radius: 8px;
     width: 100%;

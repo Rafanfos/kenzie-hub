@@ -73,7 +73,7 @@ export const DashboardPage = styled.div`
     display: flex;
     flex-direction: column;
     gap: 20px;
-    background-color: var(--grey-3);
+    background-color: var(--color-grey-3);
     max-height: 400px;
     overflow-x: auto;
   }
@@ -81,15 +81,16 @@ export const DashboardPage = styled.div`
   li {
     display: flex;
     justify-content: space-between;
-    background-color: var(--grey-4);
+    background-color: var(--color-grey-4);
     padding: 10px;
     border-radius: 4px;
+    border: 1px solid transparent;
   }
 
   li:hover {
-    background-color: var(--grey-3);
+    background-color: var(--color-grey-3);
     cursor: pointer;
-    border: 1px solid var(--grey-4);
+    border: 1px solid var(--color-grey-4);
   }
 
   .tech-name {
@@ -108,7 +109,7 @@ export const DashboardPage = styled.div`
     }
 
     .message > span {
-      color: var(--grey-1);
+      color: var(--color-grey-1);
     }
   }
 `;

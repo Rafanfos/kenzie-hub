@@ -3,15 +3,15 @@ import { createGlobalStyle } from "styled-components";
 export const Global = createGlobalStyle`
 
 :root{
-    --primary: #FF577F;
-    --primary-focus: #FF427F;
-    --primary-negative: #59323F;
+    --color-primary: #FF577F;
+    --color-primary-focus: #FF427F;
+    --color-primary-negative: #59323F;
     
-    --grey-0: #F8F9FA;
-    --grey-1: #868E96;
-    --grey-2: #343B41;
-    --grey-3: #212529;
-    --grey-4: #121214;
+    --color-grey-0: #F8F9FA;
+    --color-grey-1: #868E96;
+    --color-grey-2: #343B41;
+    --color-grey-3: #212529;
+    --color-grey-4: #121214;
     
     --toastify-color-success: #3FE864; 
     --toastify-color-error: #E83F5B;
@@ -47,7 +47,7 @@ a{
 
 body{
     height:100vh;
-    background-color: var(--grey-4);
+    background-color: var(--color-grey-4);
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
