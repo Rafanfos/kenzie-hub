@@ -16,7 +16,7 @@ export const AppRoot = styled.div`
   }
 
   form {
-    background-color: var(--grey-3);
+    background-color: var(--color-grey-3);
     box-shadow: 0px 3.20867px 32.0867px -8.02168px rgba(0, 0, 0, 0.25);
     border-radius: 3.20867px;
     width: 90%;
@@ -46,7 +46,7 @@ export const AppRoot = styled.div`
   .button,
   a,
   span {
-    color: var(--grey-0);
+    color: var(--color-grey-0);
   }
 
   input,
@@ -64,30 +64,25 @@ export const AppRoot = styled.div`
 
   input,
   select {
-    background-color: var(--grey-2);
+    background-color: var(--color-grey-2);
     border-radius: 4px;
     border: none;
   }
 
   span {
-    color: var(--grey-1);
+    color: var(--color-grey-1);
   }
 
   .button {
-    background-color: var(--primary-negative);
-    border: 1px solid var(--primary-negative);
+    background-color: var(--color-primary-negative);
+    border: 1px solid var(--color-primary-negative);
     font-size: 16px;
   }
 
   .button:hover {
-    background-color: var(--primary-focus);
-    border: 1px solid var(--primary-focus);
+    background-color: var(--color-primary-focus);
+    border: 1px solid var(--color-primary-focus);
   }
-
-  /* .button:focus {
-    background-color: var(--primary);
-    border: 1px solid var(--primary);
-  } */
 
   a {
     text-align: center;
@@ -96,20 +91,20 @@ export const AppRoot = styled.div`
   }
 
   .grey-button {
-    background-color: var(--grey-1);
-    border: 1px solid var(--grey-1);
+    background-color: var(--color-grey-1);
+    border: 1px solid var(--color-grey-1);
   }
 
   .black-button {
-    background-color: var(--grey-3);
-    border: 1px solid var(--grey-3);
+    background-color: var(--color-grey-3);
+    border: 1px solid var(--color-grey-3);
     width: 80px;
   }
 
   .black-button:hover,
   .grey-button:hover {
-    background-color: var(--grey-2);
-    border: 1px solid var(--grey-2);
+    background-color: var(--color-grey-2);
+    border: 1px solid var(--color-grey-2);
   }
 
   p {
@@ -117,7 +112,7 @@ export const AppRoot = styled.div`
   }
 
   #loader {
-    color: var(--grey-1);
+    color: var(--color-grey-1);
     animation: ${rotate} 2s linear infinite;
   }
 
@@ -133,7 +128,7 @@ export const AppRoot = styled.div`
 `;
 
 export const Page = styled.div`
-  background-color: var(--grey-4);
+  background-color: var(--color-grey-4);
   width: 100%;
   min-height: 100%;
   display: flex;

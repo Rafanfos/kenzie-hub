@@ -25,7 +25,7 @@ export const ModalWrapper = styled.div`
   }
 
   .header {
-    background-color: var(--grey-2);
+    background-color: var(--color-grey-2);
     border-top-right-radius: 8px;
     border-top-left-radius: 8px;
     width: 100%;
@@ -64,14 +64,14 @@ export const ModalWrapper = styled.div`
   }
 
   .grey-button {
-    background-color: var(--grey-1);
-    border: 1px solid var(--grey-1);
+    background-color: var(--color-grey-1);
+    border: 1px solid var(--color-grey-1);
     width: 30%;
   }
 
   .grey-button:hover {
-    background-color: var(--grey-2);
-    border: 1px solid var(--grey-2);
+    background-color: var(--color-grey-2);
+    border: 1px solid var(--color-grey-2);
   }
 
   .buttons {
