@@ -1,5 +1,6 @@
+import React from "react";
 import { useContext } from "react";
-import { UserContext } from "../../context/UserContext";
+import { IDataRegister, UserContext } from "../../context/UserContext";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Page } from "../../styles/App";
@@ -15,7 +16,7 @@ const Register = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<IDataRegister>({
     resolver: yupResolver(formSchemaRegister),
   });
 
@@ -85,7 +86,7 @@ const Register = () => {
           <StyledTitle tag="label" htmlFor="course_module">
             Módulo
           </StyledTitle>
-          <select type="text" id="course_module" {...register("course_module")}>
+          <select id="course_module" {...register("course_module")}>
             <option>Primeiro módulo (Introdução ao Frontend)</option>
             <option>Segundo módulo (Frontend Avançado)</option>
             <option>Terceiro módulo (Bibliotecas Frontend)</option>

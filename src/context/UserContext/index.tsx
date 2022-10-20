@@ -1,18 +1,59 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import React, { ReactNode, Dispatch, SetStateAction } from "react";
 import { createContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { api } from "../../services/api";
 
-export const UserContext = createContext({});
+export interface IDataLogin {
+  email: string;
+  password: string;
+  token?: string;
+}
 
-const UserProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
+export interface IDataRegister extends IDataLogin {
+  name: string;
+  confirmPassword: string;
+  contact: string;
+  bio: string;
+  course_module: string;
+}
+
+interface IUserProviderData {
+  user: { name: string; course_module: string } | null;
+  setUser: Dispatch<
+    SetStateAction<{
+      name: string;
+      course_module: string;
+    } | null>
+  >;
+  loading: boolean | null;
+  setLoading: Dispatch<SetStateAction<boolean>>;
+  sendLoginData: (data: IDataLogin) => void;
+  sendRegisterData: (data: IDataRegister) => void;
+  redirectDashboard: () => void;
+  redirectHome: () => void;
+  logout: () => void;
+}
+
+interface IUserProviderProps {
+  children: ReactNode;
+}
+
+export const UserContext = createContext<IUserProviderData>(
+  {} as IUserProviderData
+);
+
+const UserProvider = ({ children }: IUserProviderProps) => {
+  const [user, setUser] = useState<{
+    name: string;
+    course_module: string;
+  } | null>(null);
   const [loading, setLoading] = useState(true);
 
-  const navigate = useNavigate("");
+  const navigate = useNavigate();
 
-  const sendLoginData = async (data) => {
+  const sendLoginData = async (data: IDataLogin) => {
     try {
       api.defaults.headers.authorization = `Bearer ${data.token}`;
 
@@ -27,12 +68,11 @@ const UserProvider = ({ children }) => {
 
       toast.success(`Login concluído!`);
     } catch (error) {
-      toast.error("Dados inválidos, tente novamente...");
-      console.log(error);
+      toast.error(`Dados inválidos, tente novamente...`);
     }
   };
 
-  const sendRegisterData = (data) => {
+  const sendRegisterData = (data: IDataRegister) => {
     try {
       api.post("/users", data);
 
@@ -57,7 +97,7 @@ const UserProvider = ({ children }) => {
     toast.success(`"Vida longa e prospera!"`, {
       icon: "🖖",
     });
-    setUser("");
+    setUser(null);
     navigate("/");
   };
 

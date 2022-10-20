@@ -1,12 +1,13 @@
+import React from "react";
 import { useContext } from "react";
-import { UserContext } from "../../context/UserContext";
+import { IDataLogin, UserContext } from "../../context/UserContext";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Page } from "../../styles/App";
 import logo from "../../assets/Logo.png";
-import { StyledTitle } from "../../styles/components/typography";
 import { Link } from "react-router-dom";
 import { formSchemaLogin } from "../../validators";
+import { StyledTitle } from "../../styles/components/typography";
 
 const Login = () => {
   const { sendLoginData } = useContext(UserContext);
@@ -15,7 +16,7 @@ const Login = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<IDataLogin>({
     resolver: yupResolver(formSchemaLogin),
   });
 

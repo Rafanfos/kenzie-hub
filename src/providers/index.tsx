@@ -1,7 +1,7 @@
-import TechProvider from "../context/TechContext";
+import TechProvider, { ITechProvider } from "../context/TechContext";
 import UserProvider from "../context/UserContext";
 
-const Providers = ({ children }) => {
+const Providers = ({ children }: ITechProvider) => {
   return (
     <UserProvider>
       <TechProvider>{children}</TechProvider>
