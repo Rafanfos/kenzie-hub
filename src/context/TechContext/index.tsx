@@ -1,14 +1,49 @@
-import { createContext, useState } from "react";
+import {
+  createContext,
+  useState,
+  useEffect,
+  SetStateAction,
+  Dispatch,
+  ReactNode,
+} from "react";
 import { toast } from "react-toastify";
 import { api } from "../../services/api";
 
-export const TechContext = createContext({});
+export const TechContext = createContext<ITechProviderData>(
+  {} as ITechProviderData
+);
 
-const TechProvider = ({ children }) => {
-  const [techs, setTechs] = useState([]);
-  const [techId, setTechId] = useState("");
+export interface ITechProvider {
+  children: ReactNode;
+}
 
-  const addTech = async (data) => {
+export interface IDataAddEditTech {
+  title: string;
+  status: string;
+}
+
+interface ITechProviderData {
+  techs: { title: string; status: string; id: number | string }[];
+  setTechs: Dispatch<
+    SetStateAction<{ title: string; status: string; id: number | string }[]>
+  >;
+  techId: string | number | null;
+  setTechId: Dispatch<SetStateAction<string | number | null>>;
+  addTech: (data: IDataAddEditTech) => Promise<void>;
+  editTech: (
+    data: IDataAddEditTech,
+    techId: string | number | null
+  ) => Promise<void>;
+  deleteTech: (techId: string | number | null) => Promise<void>;
+}
+
+const TechProvider = ({ children }: ITechProvider) => {
+  const [techs, setTechs] = useState<
+    { title: string; status: string; id: number | string }[]
+  >([]);
+  const [techId, setTechId] = useState<string | number | null>(null);
+
+  const addTech = async (data: IDataAddEditTech) => {
     const token = localStorage.getItem("@TOKEN");
     try {
       api.defaults.headers.authorization = `Bearer ${token}`;
@@ -22,7 +57,10 @@ const TechProvider = ({ children }) => {
     }
   };
 
-  const editTech = async (data, techId) => {
+  const editTech = async (
+    data: IDataAddEditTech,
+    techId: string | number | null
+  ) => {
     const token = localStorage.getItem("@TOKEN");
     try {
       api.defaults.headers.authorization = `Bearer ${token}`;
@@ -44,7 +82,7 @@ const TechProvider = ({ children }) => {
     }
   };
 
-  const deleteTech = async (techId) => {
+  const deleteTech = async (techId: string | number | null) => {
     const token = localStorage.getItem("@TOKEN");
     try {
       api.defaults.headers.authorization = `Bearer ${token}`;
@@ -57,19 +95,19 @@ const TechProvider = ({ children }) => {
     }
   };
 
-  // useEffect(() => {
-  //   const getTechs = async () => {
-  //     const token = localStorage.getItem("@TOKEN");
-  //     try {
-  //       api.defaults.headers.authorization = `Bearer ${token}`;
+  useEffect(() => {
+    const getTechs = async () => {
+      const token = localStorage.getItem("@TOKEN");
+      try {
+        api.defaults.headers.authorization = `Bearer ${token}`;
 
-  //       const { data } = await api.get(`/profile`);
+        const { data } = await api.get(`/profile`);
 
-  //       setTechs(data.techs);
-  //     } catch (error) {}
-  //   };
-  //   getTechs();
-  // }, []);
+        setTechs(data.techs);
+      } catch (error) {}
+    };
+    getTechs();
+  }, []);
 
   return (
     <TechContext.Provider
