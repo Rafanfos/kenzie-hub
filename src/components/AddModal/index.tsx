@@ -3,17 +3,19 @@ import { ModalWrapper } from "./style";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { formSchemaModals } from "../../validators";
+import { IDataAddEditTech } from "../../context/TechContext";
+import { IAddTechProviders } from "../../pages/Dashboard";
 
-const AddModal = ({ setAddModal, addTech }) => {
+const AddModal = ({ setAddModal, addTech }: IAddTechProviders) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<IDataAddEditTech>({
     resolver: yupResolver(formSchemaModals),
   });
 
-  const add = (event) => {
+  const add = (event: IDataAddEditTech) => {
     addTech(event);
     setAddModal(false);
   };
@@ -43,7 +45,7 @@ const AddModal = ({ setAddModal, addTech }) => {
             placeholder="Digite o nome da tecnologia"
             {...register("title")}
           />
-          <StyledTitle tag="p">{errors.name?.message}</StyledTitle>
+          <StyledTitle tag="p">{errors.title?.message}</StyledTitle>
           <StyledTitle tag="label" htmlFor="status">
             Selecionar status
           </StyledTitle>
@@ -53,7 +55,7 @@ const AddModal = ({ setAddModal, addTech }) => {
             <option>Intermediário</option>
             <option>Avançado</option>
           </select>
-          <StyledTitle tag="p">{errors.type?.message}</StyledTitle>
+          <StyledTitle tag="p">{errors.status?.message}</StyledTitle>
           <button type="submit" className="button">
             Cadastrar tecnologia
           </button>

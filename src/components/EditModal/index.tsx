@@ -3,17 +3,24 @@ import { ModalWrapper } from "./style";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { formSchemaModals } from "../../validators";
+import { IEditTechProviders } from "../../pages/Dashboard";
+import { IDataAddEditTech } from "../../context/TechContext";
 
-const EditModal = ({ deleteTech, editTech, techId, setEditModal }) => {
+const EditModal = ({
+  deleteTech,
+  editTech,
+  techId,
+  setEditModal,
+}: IEditTechProviders) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<IDataAddEditTech>({
     resolver: yupResolver(formSchemaModals),
   });
 
-  const edit = (event) => {
+  const edit = (event: IDataAddEditTech) => {
     editTech(event, techId);
     setEditModal(false);
   };
@@ -30,7 +37,6 @@ const EditModal = ({ deleteTech, editTech, techId, setEditModal }) => {
             onClick={() => {
               setEditModal(false);
             }}
-            tag="span"
           >
             X
           </span>
@@ -44,7 +50,7 @@ const EditModal = ({ deleteTech, editTech, techId, setEditModal }) => {
             placeholder="Digite o nome da tecnologia"
             {...register("title")}
           />
-          <StyledTitle tag="p">{errors.name?.message}</StyledTitle>
+          <StyledTitle tag="p">{errors.title?.message}</StyledTitle>
           <StyledTitle tag="label" htmlFor="status">
             Selecionar status
           </StyledTitle>
@@ -54,7 +60,7 @@ const EditModal = ({ deleteTech, editTech, techId, setEditModal }) => {
             <option>Intermediário</option>
             <option>Avançado</option>
           </select>
-          <StyledTitle tag="p">{errors.type?.message}</StyledTitle>
+          <StyledTitle tag="p">{errors.status?.message}</StyledTitle>
           <div className="buttons">
             <button type="submit" className="button">
               Salvar alterações
