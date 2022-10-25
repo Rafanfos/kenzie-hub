@@ -27,7 +27,7 @@ interface IUserProviderData {
       course_module: string;
     } | null>
   >;
-  loading: boolean | null;
+  loading: boolean;
   setLoading: Dispatch<SetStateAction<boolean>>;
   sendLoginData: (data: IDataLogin) => void;
   sendRegisterData: (data: IDataRegister) => void;
@@ -49,7 +49,7 @@ const UserProvider = ({ children }: IUserProviderProps) => {
     name: string;
     course_module: string;
   } | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState<boolean>(true);
 
   const navigate = useNavigate();
 
