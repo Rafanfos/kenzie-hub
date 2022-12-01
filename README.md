@@ -1,7 +1,14 @@
-Funcionamento:
+# Kenzie Hub
 
-- Para primeiro acesso vá para a sessão de cadastro, e insira todas informações correspondentes com os campos.
-Cadastro:
+## Introdução:
+
+Utilizando a base do react, com um plus das libs styled-components, react-router-dom, react-hook-form e react-toastfy e mais TypeScript, foi contruída uma interface que permitia registro, login, e adição das tecnologias que o usuário tem conhecimento.
+
+## Funcionamento:
+
+**Para primeiro acesso vá para a sessão de cadastro, e insira todas informações correspondentes com os campos.**
+
+### Cadastro:
 
 - Todos os campos são obrigatórios, alguns possuem validações específicas.
 - O e-mail deve ser um endereço de e-mail válido.
@@ -9,11 +16,11 @@ Cadastro:
 - Os demais campos não possuem validação, basta preenchê-los.
 - Ao ver o aviso de cadastro concluído, poderá fazer o login normalmente.
 
-Login:
+### Login:
 
 - Digite as informações solicitadas conforme feito no cadastro, uma mensagem confirmará se o login foi realizado ou os dados estão inválidos.
 
-Tecnologias:
+### Tecnologias:
 
 - Ao logar, abaixo do campo de Boas-vindas estão as tecnologias de conhecimento do usuário, para adicionar novas selecione o botão de '+'.
 - No formulário de adicionar tecnologia coloque o nome, e seu nível de domínio na mesma.
@@ -21,10 +28,10 @@ Tecnologias:
 - Para exclusão basta clicar no botão 'excluir' e uma mensagem de confirmação será exibida.
 - Para edição é necessário preencher todos os campos e clicar em salvar alterações. Caso só queria mudar um dos campos deixe o outro com o mesmo valor que já está. Uma mensagem de confirmação aparecerá.
 
-Logout:
+### Logout:
 
 - Caso queria deslogar basta clicar em sair.
 
-Auto-login:
+### Auto-login:
 
 - Caso o usuário feche a página ou mude de endereço SEM DESLOGAR, ao voltar para página de login seria redirecionado automaticamente para dashboard.
