@@ -2,7 +2,7 @@
 
 ## Introdução:
 
-Utilizando a base do react, com um plus das libs styled-components, react-router-dom, react-hook-form e react-toastfy e mais TypeScript, foi contruída uma interface que permitia registro, login, e adição das tecnologias que o usuário tem conhecimento.
+Utilizando a base do react, com um plus das libs styled-components, react-router-dom, react-hook-form, react-toastfy e mais TypeScript, foi construída uma interface que permita registro, login, e adição das tecnologias que o usuário tem conhecimento.
 
 ## Funcionamento:
 
